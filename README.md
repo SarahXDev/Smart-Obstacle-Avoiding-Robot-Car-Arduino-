@@ -1,67 +1,80 @@
 # Smart Obstacle Avoiding Robot Car (Arduino)
 
 ## Overview
-This project is a smart robot car built using Arduino that can automatically detect and avoid obstacles in its path. It uses an ultrasonic sensor to measure distance and make real-time decisions for movement.
+An Arduino-based robot car with two modes: manual control over Bluetooth and an autonomous mode that detects and avoids obstacles in real time.
+Built as a university embedded systems and IoT project.
 
-The robot is designed for beginners in robotics and demonstrates basic automation and intelligent navigation.
 
----
+Features
+Manual driving over Bluetooth with single-letter commands
+Autonomous obstacle avoidance using an ultrasonic sensor (HC-SR04) on a servo that scans left and right
+Rear obstacle detection with an IR sensor before reversing
+Safe-distance threshold of 20 cm
+Status messages sent back over Bluetooth while the robot moves
 
-## Features
-- Obstacle detection using ultrasonic sensor (HC-SR04)
-- Automatic navigation and direction control
-- Real-time distance measurement
-- Forward, stop, and turn movements
-- Simple and efficient design
 
----
+Hardware
+Arduino board
+Ultrasonic sensor (HC-SR04)
+IR obstacle sensor
+Servo motor
+Bluetooth module
+Motor driver (L298N) and DC motors
+Pin map (from CarRobot.ino)
 
-## Technologies Used
-- Arduino UNO
-- Ultrasonic Sensor (HC-SR04)
-- Motor Driver (L298N)
-- DC Motors
-- Arduino IDE (C/C++)
 
----
+Component
+Pins
+Motors (IN1 to IN4)
+5, 6, 7, 8
+Ultrasonic (trig, echo)
+2, 3
+IR sensor
+4
+Servo
+11
+Bluetooth (RX, TX)
+9, 10
+Bluetooth commands
+Command
+Action
+F
+Move forward
+B
+Move backward (blocked if the IR sensor detects an obstacle behind)
+L / R
+Turn left / right
+S
+Stop
+A
+Start autonomous mode
+Z
+Spin around
 
-## How It Works
-1. The ultrasonic sensor continuously measures the distance in front of the robot.
-2. If no obstacle is detected, the robot moves forward.
-3. If an obstacle is detected, the robot stops.
-4. The robot then changes direction (left or right) to avoid the obstacle.
-5. The process repeats automatically.
+How the autonomous mode works
+The ultrasonic sensor measures the distance in front of the car.
+If the path is clear (more than 20 cm), the car moves forward.
+If an obstacle is detected, the car stops and the servo checks the left and right sides.
+The car turns toward the side with more space.
+If both sides are blocked, it reverses and spins around, then repeats.
 
----
 
-## Project Images
-(Add images of your robot here later)
+Project structure
+CarRobot.ino: full Arduino sketch
+LICENSE: MIT license
 
----
 
-## Project Structure
-- code/ → Arduino code files  
-- hardware/ → Components and wiring  
-- docs/ → Documentation (optional)
 
----
 
-## Purpose
-This project was developed to understand:
-- Basic robotics concepts  
-- Sensor integration  
-- Real-time decision making  
-- Arduino programming  
+Ideas for improvement
+Speed control with PWM
+Mobile app for control
+Camera or AI-based navigation
 
----
 
-## Author
-Sara Tahsin Mznd
 
----
 
-## Notes
-This is a beginner-friendly project and can be improved by adding:
-- Bluetooth or WiFi control  
-- Mobile app integration  
-- Camera or AI features  
+
+Author
+Sarah Tahsin, Computer Science graduate (Cihan University, Erbil).
+GitHub: @SarahXDev
